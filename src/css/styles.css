@@ -1,3 +1,8 @@
 .navbar {
     height: 150px;
 }
+
+.img-fluid {
+    max-height: 496px;
+    min-width: 350px
+}
