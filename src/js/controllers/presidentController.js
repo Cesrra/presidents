@@ -16,7 +16,8 @@ export class PresidentController {
             if (!response.ok) {
                 throw new Error('Failed to fetch president data')
             }
-            const presidentData = await response.json()        
+            const presidentData = await response.json()
+            presidentData.sort(this.#sortAscendent)      
             return presidentData.map(president => this.processPresidentData(president))
         } catch (error) {
             console.error('Error fetching president data:', error)
@@ -36,6 +37,16 @@ export class PresidentController {
             presidentData.endPeriodDate,
             presidentData.politicalParty
         )
+    }
+
+    #sortAscendent(a, b) {
+        if (a.name < b.name) {
+            return -1;
+        }
+        if (a.name > b.name) {
+            return 1;
+        }
+        return 0;
     }
 
     async getbyId(presidentId) {
